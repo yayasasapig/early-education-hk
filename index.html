@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>幼兒教育方法比較 | 香港家長指南</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary: #5B7DB1;
+      --primary-dark: #3D5A80;
+      --accent: #EE6C4D;
+      --accent-light: #F4A261;
+      --bg: #FDF6EC;
+      --card-bg: #FFFFFF;
+      --text: #2C3E50;
+      --text-light: #6C757D;
+      --border: #E8D5C4;
+      --shadow: rgba(91, 125, 177, 0.12);
+      --montessori: #6D9F71;
+      --doman: #C96C4D;
+      --suzuki: #7B68B5;
+      --waldorf: #B5826D;
+      --doman-read: #D4956A;
+      --abacus: #4A8DB7;
+    }
+
+    body {
+      font-family: 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #7A9FC2 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero .subtitle {
+      margin-top: 16px;
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+
+    /* Nav pills */
+    .nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 20px;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-pills a {
+      padding: 8px 16px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      background: #f0ebe4;
+      color: var(--text);
+    }
+    .nav-pills a:hover { background: var(--primary); color: white; }
+    .nav-pills a.montessori { border-left: 3px solid var(--montessori); }
+    .nav-pills a.doman { border-left: 3px solid var(--doman); }
+    .nav-pills a.suzuki { border-left: 3px solid var(--suzuki); }
+    .nav-pills a.waldorf { border-left: 3px solid var(--waldorf); }
+    .nav-pills a.doman-read { border-left: 3px solid var(--doman-read); }
+    .nav-pills a.abacus { border-left: 3px solid var(--abacus); }
+
+    /* Section */
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .section-subtitle {
+      color: var(--text-light);
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    /* Cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .method-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .method-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px var(--shadow);
+    }
+
+    .card-header {
+      padding: 20px 24px;
+      color: white;
+      position: relative;
+    }
+    .card-header.montessori { background: linear-gradient(135deg, var(--montessori), #5A8A5E); }
+    .card-header.doman { background: linear-gradient(135deg, var(--doman), #A85540); }
+    .card-header.suzuki { background: linear-gradient(135deg, var(--suzuki), #6655A0); }
+    .card-header.waldorf { background: linear-gradient(135deg, var(--waldorf), #9A6E5A); }
+    .card-header.doman-read { background: linear-gradient(135deg, var(--doman-read), #B87A4E); }
+    .card-header.abacus { background: linear-gradient(135deg, var(--abacus), #3A7399); }
+
+    .card-badge {
+      font-size: 0.72rem;
+      background: rgba(255,255,255,25%);
+      padding: 3px 10px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+    .card-header h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .card-header .founder {
+      font-size: 0.85rem;
+      opacity: 0.88;
+      margin-top: 4px;
+    }
+
+    .card-body {
+      padding: 20px 24px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+    .info-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #EEF3FA;
+      padding: 2px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      min-width: 60px;
+      text-align: center;
+    }
+    .info-value {
+      font-size: 0.9rem;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    .card-section-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .evidence-box {
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+    .evidence-pro {
+      background: #E8F5E9;
+      border-left: 3px solid #4CAF50;
+    }
+    .evidence-con {
+      background: #FFEBEE;
+      border-left: 3px solid #E53935;
+    }
+    .evidence-note {
+      background: #FFF8E1;
+      border-left: 3px solid #FF9800;
+    }
+
+    .hk-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+    .hk-status::before {
+      content: '🏙️';
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #EFF6FF, #F0F9FF);
+      border: 1px solid #BFDBFE;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      color: #1E40AF;
+      margin-top: 14px;
+    }
+    .tip-box::before {
+      content: '💡 ';
+    }
+
+    /* Comparison table */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px var(--shadow);
+      background: white;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      min-width: 800px;
+    }
+    thead th {
+      background: var(--primary-dark);
+      color: white;
+      padding: 12px 14px;
+      text-align: left;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    thead th:first-child { border-radius: 12px 0 0 0; }
+    thead th:last-child { border-radius: 0 12px 0 0; }
+    tbody tr:nth-child(even) { background: #F9F6F2; }
+    tbody tr:hover { background: #EEF3FA; }
+    tbody td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody td:first-child {
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: #F5F0EA;
+    }
+    .method-tag {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .tag-montessori { background: var(--montessori); }
+    .tag-doman { background: var(--doman); }
+    .tag-suzuki { background: var(--suzuki); }
+    .tag-waldorf { background: var(--waldorf); }
+    .tag-doman-read { background: var(--doman-read); }
+    .tag-abacus { background: var(--abacus); }
+
+    /* Footer */
+    footer {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+    footer a { color: white; }
+
+    /* Mobile adjustments */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.7rem; }
+      .hero { padding: 40px 16px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .card-body { padding: 16px; }
+    }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--primary);
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 12px rgba(91,125,177,0.4);
+      transition: background 0.2s;
+    }
+    .back-to-top:hover { background: var(--primary-dark); }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>🧒 幼兒教育方法比較</h1>
+  <p>六種全球流行幼兒教育法・全方位比較分析<br>適合香港家長的育兒決策參考指南</p>
+  <div class="subtitle">研究日期：2026年4月17日｜繁體中文</div>
+</div>
+
+<!-- Navigation -->
+<div class="nav-pills">
+  <a href="#overview">📋 總覽比較</a>
+  <a href="#montessori" class="montessori">蒙特梭利</a>
+  <a href="#doman" class="doman">Doman</a>
+  <a href="#suzuki" class="suzuki">鈴木</a>
+  <a href="#waldorf" class="waldorf">華德福</a>
+  <a href="#doman-read" class="doman-read">杜曼閱讀</a>
+  <a href="#abacus" class="abacus">珠心算</a>
+  <a href="#table">📊 比較表</a>
+</div>
+
+<!-- Overview Section -->
+<div class="section" id="overview">
+  <h2 class="section-title">教育方法總覽</h2>
+  <p class="section-subtitle">六種教育法各有獨特哲學，適合不同性格與需求的家庭</p>
+  <div class="cards-grid">
+
+    <!-- 蒙特梭利 -->
+    <div class="method-card" id="montessori">
+      <div class="card-header montessori">
+        <div class="card-badge">起源：義大利 | 1907</div>
+        <h2>蒙特梭利教育法</h2>
+        <div class="founder">Maria Montessori（瑪麗亞·蒙特梭利）</div>
+      </div>
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">核心理論</span>
+          <span class="info-value">尊重兒童內在驅動力，「跟隨兒童」而非強迫學習</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訓練方法</span>
+          <span class="info-value">預備好的環境、專門教材、混齡班、教師為引導者</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">適合年齡</span>
+          <span class="info-value">0–12歲（香港主要接觸 3–6歲幼兒之家）</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section-title">研究證據</div>
+        <div class="evidence-box evidence-pro">✅ 學業及執行功能輕至中等正面效果</div>
+        <div class="evidence-box evidence-con">❌ 缺乏隨機對照實驗，配對研究難排除家庭因素干擾</div>
+        <div class="hk-status">香港：國際學校及私立幼兒園，月費 HK$5,000–20,000</div>
+        <div class="tip-box">實用建議：驗證學校是否為 AMI/AMS 認證，師資比設備更重要</div>
+      </div>
+    </div>
+
+    <!-- Doman -->
+    <div class="method-card" id="doman">
+      <div class="card-header doman">
+        <div class="card-badge">起源：美国 | 1955</div>
+        <h2>Glenn Doman 嬰幼兒教育法</h2>
+        <div class="founder">Glenn Doman（美國物理治療師）</div>
+      </div>
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">核心理論</span>
+          <span class="info-value">0–6歲大腦黃金期・智力碎片・全腦同步開發</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訓練方法</span>
+          <span class="info-value">紅色詞彙卡、百科卡、數學卡、爬行訓練・短時高頻</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">適合年齡</span>
+          <span class="info-value">0–6歲（強調越早越好）</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section-title">研究證據</div>
+        <div class="evidence-box evidence-pro">✅ 大腦可塑性基礎獲神經科學支持</div>
+        <div class="evidence-box evidence-con">❌ 缺乏獨立雙盲 RCT，效果主要來自案例報告</div>
+        <div class="hk-status">香港：小眾圈子，多見於家長自主實踐</div>
+        <div class="tip-box">實用建議：以遊戲為本，保持訓練趣味，孩子厭倦即停止</div>
+      </div>
+    </div>
+
+    <!-- Suzuki -->
+    <div class="method-card" id="suzuki">
+      <div class="card-header suzuki">
+        <div class="card-badge">起源：日本 | 1945</div>
+        <h2>鈴木俊朗教育法</h2>
+        <div class="founder">Suzuki Shinichi（鈴木鎮一）</div>
+      </div>
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">核心理論</span>
+          <span class="info-value">「才能是後天培養的」・母語教學法・環境決定成就</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訓練方法</span>
+          <span class="info-value">每天聆聽錄音、母親陪同練習、小尺寸樂器、群體環境</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">適合年齡</span>
+          <span class="info-value">2–3歲即可開始（小提琴、鋼琴、大提琴）</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section-title">研究證據</div>
+        <div class="evidence-box evidence-pro">✅ 早期音樂訓練促進大腦發育，全球90國廣泛採用</div>
+        <div class="evidence-box evidence-con">⚠️ 讀譜能力延後、缺乏嚴格 RCT、家長壓力較大</div>
+        <div class="hk-status">香港：香港鈴木音樂學院（HKSMA）等多間機構</div>
+        <div class="tip-box">實用建議：以鈴木建立習慣與聆聽敏感度，約8歲補足讀譜訓練</div>
+      </div>
+    </div>
+
+    <!-- Waldorf -->
+    <div class="method-card" id="waldorf">
+      <div class="card-header waldorf">
+        <div class="card-badge">起源：德國 | 1919</div>
+        <h2>華德福教育</h2>
+        <div class="founder">Rudolf Steiner（魯道夫·斯坦納）</div>
+      </div>
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">核心理論</span>
+          <span class="info-value">人智學・七年階段發展論・反對過早學術化</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訓練方法</span>
+          <span class="info-value">藝術教育、想像力故事、天然素材、節奏規律、避免螢幕</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">適合年齡</span>
+          <span class="info-value">0–7歲以身體意志為主，7–14歲以情感想像為主</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section-title">研究證據</div>
+        <div class="evidence-box evidence-pro">✅ 焦慮程度較低、創造力較強、與發展心理學有共鳴</div>
+        <div class="evidence-box evidence-con">❌ 人智學被批評為偽科學，嚴謹 RCT 證據極為匱乏</div>
+        <div class="hk-status">香港：香島華德福學校（港島），全年學費約 HK$14萬</div>
+        <div class="tip-box">實用建議：區分教育理念與靈性框架，參加開放日感受實際課堂</div>
+      </div>
+    </div>
+
+    <!-- Doman Reading -->
+    <div class="method-card" id="doman-read">
+      <div class="card-header doman-read">
+        <div class="card-badge">起源：美国 | 1955</div>
+        <h2>杜曼閱讀法</h2>
+        <div class="founder">Glenn Doman（IAHP）</div>
+      </div>
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">核心理論</span>
+          <span class="info-value">嬰兒視覺辨識比語言更早成熟・閃卡绕过語音直接認字</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訓練方法</span>
+          <span class="info-value">三階段：圓點卡→詞彙卡→閱讀句子・高速閃卡展示</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">適合年齡</span>
+          <span class="info-value">6個月即可開始，黃金期 0–3歲，6歲後敏感期減弱</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section-title">研究證據</div>
+        <div class="evidence-box evidence-note">⚠️ 美國兒科學會指出：缺乏嚴格 RCT，閃卡可能造成視覺壓力</div>
+        <div class="evidence-box evidence-con">❌ 無獨立研究證明長期認知優勢，早慧不代表成年傑出</div>
+        <div class="hk-status">香港：小眾，「贏在起跑線」群組較多，主流學校不採用</div>
+        <div class="tip-box">實用建議：「展示」而非「考試」，配合正常親子共讀而非取代</div>
+      </div>
+    </div>
+
+    <!-- Abacus -->
+    <div class="method-card" id="abacus">
+      <div class="card-header abacus">
+        <div class="card-badge">起源：日本 | 1950年代</div>
+        <h2>珠心算教育</h2>
+        <div class="founder">源自中國算盤・日本發揚</div>
+      </div>
+      <div class="card-body">
+        <div class="info-row">
+          <span class="info-label">核心理論</span>
+          <span class="info-value">右腦影像計算・心中模擬算盤・高速心算</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">訓練方法</span>
+          <span class="info-value">實體算盤操作→影像內化→閃式心算（Flash Anzan）</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">適合年齡</span>
+          <span class="info-value">4–12歲黃金期，部分接受3歲起，每週段位檢定</span>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section-title">研究證據</div>
+        <div class="evidence-box evidence-pro">✅ fMRI 證實計算時右腦視覺空間區活跃，計算速度顯著提升</div>
+        <div class="evidence-box evidence-con">⚠️ 遷移效果存疑，擅長特定計算模式而非一般數學理解</div>
+        <div class="hk-status">香港：課後興趣班為主，月費約 HK$數百至千元</div>
+        <div class="tip-box">實用建議：每日10-15分鐘優於每週長期訓練，結合正規數學學習</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<div class="section" id="table">
+  <h2 class="section-title">全方位比較表</h2>
+  <p class="section-subtitle">一眼看懂六種方法的關鍵差異</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>比較維度</th>
+          <th>蒙特梭利</th>
+          <th>Doman</th>
+          <th>鈴木</th>
+          <th>華德福</th>
+          <th>杜曼閱讀</th>
+          <th>珠心算</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>創辦人</td>
+          <td>瑪麗亞·蒙特梭利（義）</td>
+          <td>Glenn Doman（美）</td>
+          <td>鈴木鎮一（日）</td>
+          <td>魯道夫·斯坦納（奧）</td>
+          <td>Glenn Doman（美）</td>
+          <td>源自中國/日本</td>
+        </tr>
+        <tr>
+          <td>起源年份</td>
+          <td>1907</td>
+          <td>1955</td>
+          <td>1945</td>
+          <td>1919</td>
+          <td>1955</td>
+          <td>1950年代</td>
+        </tr>
+        <tr>
+          <td>核心理念</td>
+          <td>跟隨兒童・自主學習</td>
+          <td>全腦開發・黃金期刺激</td>
+          <td>才能後天・母語教學</td>
+          <td>人智學・反對過早學術</td>
+          <td>閃卡認字・繞過語音</td>
+          <td>右腦影像・算盤心算</td>
+        </tr>
+        <tr>
+          <td>主要工具</td>
+          <td>專門教材・混齡環境</td>
+          <td>紅色詞彙卡・百科卡</td>
+          <td>錄音・小樂器・陪練</td>
+          <td>藝術・故事・天然素材</td>
+          <td>圓點卡→詞彙卡→句子卡</td>
+          <td>算盤・心算影像</td>
+        </tr>
+        <tr>
+          <td>適合年齡</td>
+          <td>0–12歲</td>
+          <td>0–6歲</td>
+          <td>2–3歲起</td>
+          <td>0–21歲（七年階段）</td>
+          <td>6個月至6歲</td>
+          <td>4–12歲</td>
+        </tr>
+        <tr>
+          <td>香港普及度</td>
+          <td>中高・國際學校為主</td>
+          <td>低・小眾圈子</td>
+          <td>中・音樂機構</td>
+          <td>低・小眾另類選擇</td>
+          <td>低・育兒群組</td>
+          <td>中・興趣班常見</td>
+        </tr>
+        <tr>
+          <td>費用參考</td>
+          <td>HK$5k–20k/月</td>
+          <td>家長自主・材料費</td>
+          <td>課堂收費（樂器+學費）</td>
+          <td>約 HK$14萬/年（香島）</td>
+          <td>家長自主・材料費</td>
+          <td>HK$數百–千元/月</td>
+        </tr>
+        <tr>
+          <td>科學證據</td>
+          <td>中等（輕至中正面）</td>
+          <td>弱（個案為主）</td>
+          <td>中（有神經科學支持）</td>
+          <td>弱（RCT極少）</td>
+          <td>弱（缺乏獨立RCT）</td>
+          <td>中（fMRI支持神經機制）</td>
+        </tr>
+        <tr>
+          <td>主要風險</td>
+          <td>實施差異大</td>
+          <td>壓力・長期效果未證</td>
+          <td>讀譜延後・家長壓力</td>
+          <td>人智學爭議・銜接主流難</td>
+          <td>視覺壓力・社交互動缺乏</td>
+          <td>過度練習・遷移效果存疑</td>
+        </tr>
+        <tr>
+          <td>最佳適用</td>
+          <td>重視獨立・探索型孩子</td>
+          <td>家長高度投入・強興趣</td>
+          <td>音樂興趣・家長陪同</td>
+          <td>藝術導向・抗拒競爭環境</td>
+          <td>希望早期認字（持審慎期望）</td>
+          <td>提升計算速度與專注</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Key Takeaways -->
+<div class="section">
+  <h2 class="section-title">家長決策要點</h2>
+  <p class="section-subtitle">選擇教育方法前先問自己這幾個問題</p>
+  <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+    <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 12px var(--shadow);">
+      <div style="font-size:2rem;margin-bottom:8px;">🏠</div>
+      <h3 style="font-size:1rem;color:var(--primary-dark);margin-bottom:8px;">家庭資源</h3>
+      <p style="font-size:0.88rem;color:var(--text-light);">家長有多少時間投入？經濟預算是否允許？蒙特梭利、鈴木、華德福均需家長高度參與。</p>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 12px var(--shadow);">
+      <div style="font-size:2rem;margin-bottom:8px;">👶</div>
+      <h3 style="font-size:1rem;color:var(--primary-dark);margin-bottom:8px;">孩子特質</h3>
+      <p style="font-size:0.88rem;color:var(--text-light);">孩子性格是探索型、藝術型還是喜歡紀律？沒有一種方法適合所有孩子，了解自己孩子最重要。</p>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 12px var(--shadow);">
+      <div style="font-size:2rem;margin-bottom:8px;">🎯</div>
+      <h3 style="font-size:1rem;color:var(--primary-dark);margin-bottom:8px;">教育目標</h3>
+      <p style="font-size:0.88rem;color:var(--text-light);">你希望孩子快樂學習、學術成就還是全面發展？不同方法側重點各異，需配合家庭價值觀。</p>
+    </div>
+    <div style="background:white;border-radius:12px;padding:20px;box-shadow:0 2px 12px var(--shadow);">
+      <div style="font-size:2rem;margin-bottom:8px;">🔍</div>
+      <h3 style="font-size:1rem;color:var(--primary-dark);margin-bottom:8px;">驗證機構</h3>
+      <p style="font-size:0.88rem;color:var(--text-light);">選擇任何機構前，必須查核其認證資質，親身觀課感受，不宜只看口碑或名氣。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Final note -->
+<div class="section" style="text-align:center; max-width:720px; margin:0 auto;">
+  <div style="background:white;border-radius:16px;padding:28px;box-shadow:0 2px 16px var(--shadow);border-left:4px solid var(--accent);">
+    <p style="font-size:1.05rem;color:var(--text);line-height:1.9;">
+      <strong style="color:var(--primary-dark);">最重要的事：</strong><br>
+      所有研究都指向同一個結論——<strong>安全的依附關係、豐富的語言互動、持續的親子共讀</strong>，是早期教育最重要的基石。任何教育方法都不應取代這些核心要素。選擇適合自己家庭的方式，享受與孩子共同成長的過程。
+    </p>
+  </div>
+</div>
+
+<div style="height:40px;"></div>
+
+<footer>
+  <p>📚 研究日期：2026年4月17日｜資料來源：Britannica、AMI/AMS 官網、npj Science of Learning、IAHP、神經科學文獻等</p>
+  <p style="margin-top:8px;">本頁面僅供資訊參考，不構成教育建議｜選擇前宜諮詢專業人士</p>
+</footer>
+
+<a href="#" class="back-to-top" title="回到頂部">↑</a>
+
+</body>
+</html>
